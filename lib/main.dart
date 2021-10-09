@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 void main() => runApp(ShopApp());
 
 class ShopApp extends StatefulWidget {
-  ShopApp({Key? key}) : super(key: key);
+  const ShopApp({Key? key}) : super(key: key);
 
   @override
   _ShopAppState createState() => _ShopAppState();
@@ -17,11 +17,11 @@ class _ShopAppState extends State<ShopApp> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => Products(),
+      create: (_) => Products(),
       child: MaterialApp(
           title: "Shop",
           theme: ThemeData(
-            backgroundColor: Color(0xff242037),
+            backgroundColor: const Color(0xff242037),
             primarySwatch: Colors.pink,
           ),
           home: const ProductsOverviewScreen(),

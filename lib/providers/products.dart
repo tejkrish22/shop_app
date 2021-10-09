@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../models/product.dart';
+import 'product.dart';
 
 class Products with ChangeNotifier {
+  // ignore: prefer_final_fields
   List<Product> _items = [
     Product(
       id: 'p1',
@@ -41,6 +42,11 @@ class Products with ChangeNotifier {
     return [
       ..._items
     ]; // because of reference type, when we change, it changes fully.
+  }
+
+  // ignore: non_constant_identifier_names
+  Product findById(String Id) {
+    return _items.firstWhere((prod) => prod.id == Id);
   }
 
   void addPoduct() {

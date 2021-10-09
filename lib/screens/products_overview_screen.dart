@@ -17,7 +17,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       appBar: AppBar(
         title: const Text("MyShop"),
       ),
-      body: ProductsGrid(),
+      body: const ProductsGrid(),
     );
   }
 }
