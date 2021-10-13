@@ -5,22 +5,21 @@ import '../screens/product_details_screen.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);
-
-  // ignore: use_key_in_widget_constructors
-
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         footer: GridTileBar(
-          leading: IconButton(
-            color: Colors.red,
-            icon: product.isFavorite!
-                ? const Icon(Icons.favorite)
-                : const Icon(Icons.favorite_border_outlined),
-            onPressed: product.toggleFavorite,
+          leading: Consumer<Product>(
+            builder: (context, value, _) => IconButton(
+              color: Colors.red,
+              icon: product.isFavorite!
+                  ? const Icon(Icons.favorite)
+                  : const Icon(Icons.favorite_border_outlined),
+              onPressed: product.toggleFavorite,
+            ),
           ),
           trailing: IconButton(
             color: Colors.red,

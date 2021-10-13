@@ -38,11 +38,25 @@ class Products with ChangeNotifier {
     ),
   ];
 
+  // var _showFavoritesOnly = false;
+
   List<Product> get items {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((element) => element.isFavorite!).toList();
+    // }
     return [
       ..._items
     ]; // because of reference type, when we change, it changes fully.
   }
+
+  List<Product> get favs {
+    return _items.where((prod) => prod.isFavorite!).toList();
+  }
+
+  // void toggleFavoriteStatus() {
+  //   _showFavoritesOnly = !_showFavoritesOnly;
+  //   notifyListeners();
+  // }
 
   // ignore: non_constant_identifier_names
   Product findById(String Id) {
