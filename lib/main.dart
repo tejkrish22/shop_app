@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '../screens/products_overview_screen.dart';
 import '../screens/product_details_screen.dart';
 import '../providers/products.dart';
+import '../providers/cart.dart';
 import 'package:provider/provider.dart';
+import '../screens/cart_screen.dart';
 
-void main() => runApp(ShopApp());
+void main() => runApp(const ShopApp());
 
 class ShopApp extends StatefulWidget {
   const ShopApp({Key? key}) : super(key: key);
@@ -16,18 +18,28 @@ class ShopApp extends StatefulWidget {
 class _ShopAppState extends State<ShopApp> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (ctx) => Products(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Cart(),
+        ),
+      ],
       child: MaterialApp(
-          title: "Shop",
-          theme: ThemeData(
-            backgroundColor: const Color(0xff242037),
-            primarySwatch: Colors.pink,
-          ),
-          home: const ProductsOverviewScreen(),
-          routes: {
-            ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-          }),
+        debugShowCheckedModeBanner: false,
+        title: "Shop",
+        theme: ThemeData(
+          backgroundColor: const Color(0xff242037),
+          primarySwatch: Colors.pink,
+        ),
+        home: const ProductsOverviewScreen(),
+        routes: {
+          ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
+          CartScreen.routeName: (ctx) => const CartScreen(),
+        },
+      ),
     );
   }
 }
