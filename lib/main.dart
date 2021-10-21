@@ -3,8 +3,10 @@ import '../screens/products_overview_screen.dart';
 import '../screens/product_details_screen.dart';
 import '../providers/products.dart';
 import '../providers/cart.dart';
+import '../providers/orders.dart';
 import 'package:provider/provider.dart';
 import '../screens/cart_screen.dart';
+import '../screens/orders_screen.dart';
 
 void main() => runApp(const ShopApp());
 
@@ -26,6 +28,9 @@ class _ShopAppState extends State<ShopApp> {
         ChangeNotifierProvider(
           create: (_) => Cart(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => Orders(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -38,6 +43,7 @@ class _ShopAppState extends State<ShopApp> {
         routes: {
           ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
           CartScreen.routeName: (ctx) => const CartScreen(),
+          OrdersScreen.routeName: (ctx) => const OrdersScreen(),
         },
       ),
     );
